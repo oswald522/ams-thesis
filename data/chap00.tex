@@ -1,0 +1,228 @@
+% !TeX root = ../main.tex
+
+\chapter{使用方法}
+下面介绍该模版的使用方法.
+
+\section{文件说明}
+
+% 页眉距顶端2.3cm，双实线，页脚距底端2.3cm，单实线，页码在页脚实线下方，格式为“第 1 页” 数字识为阿拉伯，左右各空一格，宋体五号字体。
+% 页眉距顶端2.3cm，双实线，页脚距底端2.3cm，单实线，页码在页脚实线下方，格式为“第 1 页” 数字识为阿拉伯，左右各空一格，宋体五号字体。
+% 一级标题为第一章（两空格）题目（格式为居中三号黑体、段前1.5行段后1行，多倍行距1.25）
+% 二级标题为 “1.1（两空格）题目”(格式为居中宋体四号，段前1.5行段后1行，多倍行距1.25)
+% 三级标题为“1.1.1  题目”（格式为黑体小四首行缩进2字符，段前1行段后1行，多倍行距1.25）
+% 正文内容（格式为宋体小四，首行缩进2字符，多倍行距1.25）
+
+该模版包含文件结构如表~\ref{tab:file}~所示。
+
+\begin{table}[htb]
+  \centering
+  \caption{文件说明}
+  \begin{tabular}{ll}
+    \toprule
+    文件名                       & 描述                     \\
+    \midrule
+    amsthesis.cls   & 模板文件，包括文档和注释   \\
+    main.tex                  & 主文件                    \\
+    ref.bib                   & BibTeX文件               \\
+    data/                     & 包含具体TeX文件的文件夹          \\
+    figures/                  & 默认用来存放图片的文件夹           \\
+    data/chap00.tex           & 第一章的TeX文件（建议每章一个TeX文件） \\
+    data/abstract.tex         & 中英文摘要                  \\
+    data/acknowledgements.tex & 致谢                     \\
+    data/appendix.tex         & 附录                     \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:file}
+\end{table}
+
+\section{插图}
+
+图片通常在 \env{figure} 环境中使用 \cs{includegraphics} 插入，如图~\ref{fig:example}~ 的源代码。建议矢量图片使用 PDF 格式，比如数据可视化的绘图；照片应使用 JPG 格式；其他的栅格图应使用无损的 PNG 格式。
+
+此处可能会涉及到\textcolor{red}{短标题和长标题问题}，注意代码的使用 \cs{caption}[短标题，目录当中体现]\{长标题，在正文当中体现\}。此种方式可以将在正文目录标题后面添加补充说明文字，而不在图目录当中体现，表格目录类似。
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.25\textwidth]{figures/demo.png}
+  \caption[内容精简出现在表目录]{我的内容非常长。这张图片显示了一个A字母}
+  \label{fig:demo}
+\end{figure}
+
+\subsection{图表示例}
+若图或表中有附注，采用英文小写字母顺序编号，附注写在图或表的下方。
+国外的期刊习惯将图表的标题和说明文字写成一段，需要改写为标题只含图表的名称，其他说明文字以注释方式写在图表下方，或者写在正文中。
+
+\textcolor{red}{子图个人通常不使用，都是一张整图当中表明(a),(b),(c)，好处是不用调整编辑位置}。
+\par 如果一个图由两个或两个以上分图组成时，各分图分别以 (a)、(b)、(c)...... 作为图序，并须有分图题。
+推荐使用 \pkg{subcaption} 宏包来处理， 比如图~\ref{fig:subfig-a}~ 和图~\ref{fig:subfig-b}~。
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.5\textwidth]{example-image-a.pdf}
+  % \caption*{国外的期刊习惯将图表的标题和说明文字写成一段，需要改写为标题只含图表的名称，其他说明文字以注释方式写在图表下方，或者写在正文中。}
+  \caption{示例图片标题}
+  \label{fig:example}
+\end{figure}
+
+
+\section{表格}
+生平只用三线表，因此更多表格使用请自定义。
+
+\par 表应具有自明性。为使表格简洁易读，尽可能采用三线表，如表~\ref{tab:three-line}~。
+三条线可以使用 \pkg{booktabs} 宏包提供的命令生成。可以调整表格的列间距
+\begin{verbatim}\setlength{\tabcolsep}{10mm}
+\end{verbatim}或者行距进行优化。
+\begin{table}[htb]
+  \centering
+  \caption{三线表示例}
+  \setlength{\tabcolsep}{8mm}     % 调节表格列间距,值不需要特别大5~15mm之间即可
+  \begin{tabular}{ll}
+    \toprule
+    文件名             & 描述               \\
+    \midrule
+    amsthesis.cls   & 模板文件，包括文档和注释   \\
+    ref.bib   & 参考文献             \\
+    data文件夹 & 用于编写论文内容 \\
+    figures or images & 论文图片目录 \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:three-line}
+\end{table}
+
+
+\section{数学定理}
+此部分个人使用的不多，建议自行修改完善，导入熟悉的包。
+
+定理环境的格式可以使用 \pkg{amsthm} 或者 \pkg{ntheorem} 宏包配置。
+用户在导言区载入这两者之一后，模板会自动配置 \env{theorem}、\env{proof} 等环境。
+
+\begin{theorem}[Lindeberg--Lévy 中心极限定理]
+  设随机变量 $X_1, X_2, \dots, X_n$ 独立同分布， 且具有期望 $\mu$ 和有限的方差 $\sigma^2 \ne 0$，
+  记 $\bar{X}_n = \frac{1}{n} \sum_{i+1}^n X_i$，则
+  \begin{equation}
+    \lim_{n \to \infty} P \left(\frac{\sqrt{n} \left( \bar{X}_n - \mu \right)}{\sigma} \le z \right) = \Phi(z),
+  \end{equation}
+  其中 $\Phi(z)$ 是标准正态分布的分布函数。
+\end{theorem}
+\begin{proof}
+  Trivial.
+\end{proof}
+
+
+
+
+
+
+\section{引用}
+引用直接使用\cs{cite}命令即可，此处引用文献参考标准\cite{gbt7714-2005}。
+疯狂引用一堆参考文献\cite{Gendron1991ComeonplusPA,gbt7714-2005,liende2020SG3}。
+\textcolor{red}{模板当中的参考文献条目是悬挂缩进，官方Word当中是首行缩进，美观程度略差一些。}
+\section{框架代码}
+% 在文档的适当位置
+\begin{theorem}[毕达哥拉斯定理]
+  在直角三角形中，直角边的平方和等于斜边的平方。
+\end{theorem}
+
+\begin{lemma}
+  这是一个引理。
+\end{lemma}
+
+\begin{corollary}
+  这是一个推论。
+\end{corollary}
+
+\begin{equation}
+  A^2=B^2+C^2
+\end{equation}
+
+
+\section{算法部分}
+\begin{algorithm}[htb]
+  \caption{How to write algorithms}
+  \label{algo:algo2}
+  \KwData{this text}
+  \KwResult{how to write algorithm with \LaTeX2e }
+  initialization\;
+  \While{not at end of this document}{
+    read current\;
+    \eIf{understand}{
+      go to next section\;
+      current section becomes this one\;
+    }{
+      go back to the beginning of current section\;
+    }
+  }
+\end{algorithm}
+
+\chapter{论文主要部分的写法}
+
+研究生学位论文撰写，除表达形式上需要符合一定的格式要求外，内容方面上也要遵循一些共性原则。
+
+通常研究生学位论文只能有一个主题（不能是几块工作拼凑在一起），该主题应针对某学科领域中的一个具体问题展开深入、系统的研究，并得出有价值的研究结论。
+学位论文的研究主题切忌过大，例如，“中国国有企业改制问题研究”这样的研究主题过大，因为“国企改制”涉及的问题范围太广，很难在一本研究生学位论文中完全研究透彻。
+
+
+
+\section{论文的语言及表述}
+
+除国际研究生外，学位论文一律须用汉语书写。
+学位论文应当用规范汉字进行撰写，除古汉语研究中涉及的古文字和参考文献中引用的外文文献之外，均采用简体汉字撰写。
+
+国际研究生一般应以中文或英文书写学位论文，格式要求同上。
+论文须用中文封面。
+
+研究生学位论文是学术作品，因此其表述要严谨简明，重点突出，专业常识应简写或不写，做到立论正确、数据可靠、说明透彻、推理严谨、文字凝练、层次分明，避免使用文学性质的或带感情色彩的非学术性语言。
+
+论文中如出现一个非通用性的新名词、新术语或新概念，需随即解释清楚。
+
+
+\section{论文题目的写法}
+
+论文题目应简明扼要地反映论文工作的主要内容，力求精炼、准确，切忌笼统。
+论文题目是对研究对象的准确、具体描述，一般要在一定程度上体现研究结论，因此，论文题目不仅应告诉读者这本论文研究了什么问题，更要告诉读者这个研究得出的结论。
+例如：“在事实与虚构之间：梅乐、卡彭特、沃尔夫的新闻观”就比“三个美国作家的新闻观研究”更专业、更准确。
+
+
+
+\section{摘要的写法}
+
+论文摘要是对论文研究内容的高度概括，应具有独立性和自含性，即应是 一篇简短但意义完整的文章。
+通过阅读论文摘要，读者应该能够对论文的研究 方法及结论有一个整体性的了解，因此摘要的写法应力求精确简明。
+论文摘要 应包括对问题及研究目的的描述、对使用的方法和研究过程进行的简要介绍、 对研究结论的高度凝练等，重点是结果和结论。
+
+论文摘要切忌写成全文的提纲，尤其要避免“第 1 章……；第 2 章……；……”这样的陈述方式。
+
+\section{引言的写法}
+
+一篇学位论文的引言大致包含如下几个部分：
+1、问题的提出；
+2、选题背 景及意义；
+3、文献综述；
+4、研究方法；
+5、论文结构安排。
+\begin{itemize}
+  \item 问题的提出：要清晰地阐述所要研究的问题“是什么”。
+    \footnote{选题时切记要有“问题意识”，不要选不是问题的问题来研究。}
+  \item 选题背景及意义：论述清楚为什么选择这个题目来研究，即阐述该研究对学科发展的贡献、对国计民生的理论与现实意义等。
+  \item 文献综述：对本研究主题范围内的文献进行详尽的综合述评，“述”的同时一定要有“评”，指出现有研究状态，仍存在哪些尚待解决的问题，讲出自己的研究有哪些探索性内容。
+  \item 研究方法：讲清论文所使用的学术研究方法。
+  \item 论文结构安排：介绍本论文的写作结构安排。
+\end{itemize}
+
+
+
+\section{正文的写法}
+
+本部分是论文作者的研究内容，不能将他人研究成果不加区分地掺和进来。
+已经在引言的文献综述部分讲过的内容，这里不需要再重复。
+各章之间要存在有机联系，符合逻辑顺序。
+
+
+
+\section{结论的写法}
+
+结论是对论文主要研究结果、论点的提炼与概括，应精炼、准确、完整，使读者看后能全面了解论文的意义、目的和工作内容。
+结论是最终的、总体的结论，不是正文各章小结的简单重复。
+结论应包括论文的核心观点，主要阐述作者的创造性工作及所取得的研究成果在本领域中的地位、作用和意义，交代研究工作的局限，提出未来工作的意见或建议。
+同时，要严格区分自己取得的成果与指导教师及他人的学术成果。
+
+在评价自己的研究工作成果时，要实事求是，除非有足够的证据表明自己的研究是“首次”、“领先”、“填补空白”的，否则应避免使用这些或类似词语。
+
