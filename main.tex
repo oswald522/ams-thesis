@@ -1,0 +1,52 @@
+% !TEX program = xelatex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !BIB program = biblatex
+% 如果使用TexStudio,可以应当按照makefile自定义编译命令（选项/设置TexStudio/构建/用户命令(make,clean),see Figure`setting.png`
+
+\documentclass[twoside]{amsthesis}
+% 如果不需要双面打印时插入的空白页，可以将twoside选项改成oneside
+% 默认为硕士论文，传递参数`phd`修改为博士学位论文
+
+
+% ======= 根据自己需要加载相应宏包,可取消注释 ==========
+\usepackage{pdfpages}   % 导入制作好的封面cover.pdf
+%\usepackage{longtable}      %支持跨页的表格
+\usepackage{multirow}       % 多行图表
+\usepackage{makecell}       % 单元格内换行
+\usepackage{bm}             % 字体格式
+
+\begin{document}
+% 封面制作的难度和复杂度都太高，耗费时间不值得，直接使用word填好内容后生成cover.pdf(只保留前6页)
+% \blind{\includepdf[pages=1-4]{./cover.pdf}}{\includepdf[pages=1-6]{./cover.pdf}}
+% \includepdf[pages=1-2]{./cover/cover_pub.pdf}
+\frontmatter
+% 中文目录\表目录\图目录
+\tableofcontents
+\listoftables
+\listoffigures
+\input{data/terms}   %术语表和缩略语表
+% 中英文摘要
+\input{data/abstract}
+% 正文部分
+\mainmatter
+% \input{data/preface}
+\input{data/chap00}  %此处为示例内容
+%\input{data/chap01}    %前三章
+%\input{data/chap02}    %后三章
+% \input{data/chap00}    %后三章
+
+% 参考文献
+\phantomsection
+\addcontentsline{toc}{chapter}{参考文献}
+\printbibliography[heading=bibliography,title=参考文献]
+% 附录
+\input{data/appendix.tex}
+%===================================================================================
+% 以下内容提示：正式成文后删除
+%===================================================================================
+% 作者学术期间取得的学术成果,匿名版本需要去掉作者、单位和导师等相关信息
+\input{data/production.tex}
+\input{data/resume.tex}% 主要简历
+\input{data/acknowledgements.tex}% 致谢
+\end{document}
