@@ -1,41 +1,34 @@
-name: Create Release
+name: Create Release ZIP
+
 on:
   push:
     tags:
       - 'v*.*.*'  # 监听符合 vX.X.X 格式的标签
 
 jobs:
-  release:
+  create-zip:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Get repository name
-      run: echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+      id: repo
+      run: echo "name=$(basename $GITHUB_REPOSITORY)" >> $GITHUB_ENV
 
-    - name: Create archive
-      run: zip -r "${{ env.REPO_NAME }}-${GITHUB_REF_NAME}.zip" . -x "*.git*"
+    - name: Get version from tag
+      id: version
+      run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create ZIP file
+      run: |
+        FILENAME="${name}-${version}.zip"
+        echo "Creating ZIP file: $FILENAME"
+        zip -r "$FILENAME" .
+
+    - name: Upload release asset
+      uses: actions/upload-artifact@v3
       with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
-        body: |
-          ## Changes
-          - Describe your changes here
-        draft: false
-        prerelease: false
-
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./${{ env.REPO_NAME }}...
+        name: ${{ env.name }}-${{ env.version }}
+        path: ${{ env.name }}-${{ env.version }}.zip
