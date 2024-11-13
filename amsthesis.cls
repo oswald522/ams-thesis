@@ -6,7 +6,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{amsthesis}[2024/06/20 Academy of Military Science Thesis Template]
-\def\version{1.1}
+\def\version{1.0}
 %检查是否由xelatex编译
 \RequirePackage{ifxetex}
 \ifxetex
@@ -58,7 +58,7 @@ Only choose `xelatex', no `pdflatex' or `latex' and so on.}
 % \setmainfont{Arial}         %我也不知道英文标题应该使用哪一种，Time New Roman or Arial
 \setmainfont{Times New Roman}   % 英文字体是用Time New Roman
 \setsansfont{Arial}             % 另外一种常用的英文字体
-\linespread{0.9}                % 全局行距设置
+% \linespread{0.9}                % 全局行距设置
 \newcommand{\rmnum}[1]{\romannumeral #1}  %罗马文字
 \newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}  %罗马文字
 % \setstretch{1.25}  % 自定义行距倍数
@@ -265,24 +265,24 @@ Only choose `xelatex', no `pdflatex' or `latex' and so on.}
     numberformat = \rmfamily\zihao{4}\selectfont,
     titleformat=\songti\zihao{4}\selectfont,
     aftername  = \hspace{0.5\ccwd},
-    beforeskip  = 0.75\baselineskip,
-    afterskip   = 0.5\baselineskip,
+    beforeskip  = 1.5\baselineskip,
+    afterskip   = 1\baselineskip,
     % fixskip=true,
   },
   subsection = {
     numberformat = \rmfamily\zihao{-4}\selectfont,
     titleformat= \heiti\zihao{-4}\selectfont,
     aftername  = \hspace{0.5\ccwd},
-    beforeskip = 0.75\baselineskip,
-    afterskip  = 0.5\baselineskip,
+    beforeskip = 1\baselineskip,
+    afterskip  = 1\baselineskip,
     indent=\parindent,
   },
   subsubsection={
     numberformat = \rmfamily\zihao{-4}\selectfont,
     titleformat= \heiti\zihao{-4}\selectfont,
     aftername  = \hspace{0.5\ccwd},
-    beforeskip = 0.75\baselineskip,
-    afterskip  = 0.5\baselineskip,
+    beforeskip = 1\baselineskip,
+    afterskip  = 0\baselineskip,
     indent=\parindent,
   }
 }
