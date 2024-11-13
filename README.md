@@ -29,6 +29,10 @@
 推荐的编译命令为`latexmk -xelatex -synctex=1 main.tex`，`latexmk`命令的运行需要系统安装有Perl解释器.可以使用命令`latexmk -C`来删除编译产生的文件，可以使用命令`latexmk -c`来删除编译产生的临时文件.
 建议设置自定义命令`make & clean`,![自定义命令参考设置](./docs/setting.png)
 
+此外，项目路径中补充VSCode+latex Workshop插件的相关配置，确保`main.tex`为当前选中打开文件后，激活右侧Tex菜单，路径为`构建Latex项目-->配方：构建PDF文件`，即可实现PDF文件的编译。
+
+![Latex插件路径](./docs/vscode_plugins.png)
+
 ### 其他需要注意的事项
 1. 当前大多数包已经导入，一般并不需要额外导入其他的包.导入的包及完成的设置：`graphicx(图片导入布局，导入figure或images不需要完整路径`,`amsmath`，`booktabs(三线表)`，`xcolor(字体颜色)`，`algorithm2e(算法库)`.如果需要其他库，请直接在`main.tex`当中进行导入.
 1. 写论文过程中发现， 图表的布局格式选择`[htb]`效果表现是最优的，优先当前位置，其次顶端、再次底部，不建议添加p.
