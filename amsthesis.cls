@@ -67,7 +67,7 @@ Only choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % window系统下主要使用window系统提供的字体：宋体、仿宋、黑体等
 % Win系统以下内容取消注释
-% \setCJKfamilyfont{zhsong}{SimSun}[AutoFakeBold = {1.5}]
+% \setCJKfamilyfont{zhsong}{SimSun}[AutoFakeBold = {1.75}]
 % \renewcommand{\songti}{\CJKfamily{zhsong}}  %中易宋体
 % \renewcommand{\heiti}{\CJKfamily{zhhei}}  %中易黑体
 
@@ -107,7 +107,8 @@ Only choose `xelatex', no `pdflatex' or `latex' and so on.}
   \renewcommand{\headrulewidth}{0pt} % 去掉原始页眉单线
   \renewcommand{\footrulewidth}{1pt} % 页脚下单实线
   \fancyhead[C]{\songti \zihao{5} \selectfont {\ifphd 博士学位论文 \else 硕士学位论文 \fi}\vspace{3pt}\\
-    \doubleline % 添加双线
+     % 在文字和双线之间添加一些间距+换行  
+  \doubleline % 添加双线
   }
   \fancyfoot[C,C]{\songti\zihao{5} 第~\rmfamily{\thepage}~页}
 }
@@ -254,8 +255,8 @@ Only choose `xelatex', no `pdflatex' or `latex' and so on.}
     name = {第,章},
     number      = \chinese{chapter},
     aftername   = \hspace{\ccwd},
-    beforeskip  = 0.5\baselineskip,
-    afterskip   = 1\baselineskip,
+    beforeskip  = 0.35\baselineskip,
+    afterskip   = 0.5\baselineskip,
     break = {\clearpage},%
     % fixskip=true,
     lofskip=0pt,
@@ -265,23 +266,23 @@ Only choose `xelatex', no `pdflatex' or `latex' and so on.}
     numberformat = \rmfamily\zihao{4}\selectfont,
     titleformat=\songti\zihao{4}\selectfont,
     aftername  = \hspace{0.5\ccwd},
-    beforeskip  = 1.5\baselineskip,
-    afterskip   = 1\baselineskip,
+    beforeskip  = 0.75\baselineskip,
+    afterskip   = 0.5\baselineskip,
     % fixskip=true,
   },
   subsection = {
     numberformat = \rmfamily\zihao{-4}\selectfont,
     titleformat= \heiti\zihao{-4}\selectfont,
     aftername  = \hspace{0.5\ccwd},
-    beforeskip = 1\baselineskip,
-    afterskip  = 1\baselineskip,
+    beforeskip = 0.75\baselineskip,
+    afterskip  = 0.5\baselineskip,
     indent=\parindent,
   },
   subsubsection={
     numberformat = \rmfamily\zihao{-4}\selectfont,
     titleformat= \heiti\zihao{-4}\selectfont,
     aftername  = \hspace{0.5\ccwd},
-    beforeskip = 1\baselineskip,
+    beforeskip = 0.5\baselineskip,
     afterskip  = 0\baselineskip,
     indent=\parindent,
   }
