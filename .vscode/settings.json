@@ -23,7 +23,6 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
-                "${workspaceFolder}/main.tex"  // 指定主文件,不确定
             ]
         },
         {
