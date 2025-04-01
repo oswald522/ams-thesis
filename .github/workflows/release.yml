@@ -28,7 +28,7 @@ jobs:
         zip -r "$FILENAME" .
 
     - name: Upload release asset
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@latest
       with:
         name: ${{ env.name }}-${{ env.version }}
         path: ${{ env.name }}-${{ env.version }}.zip
