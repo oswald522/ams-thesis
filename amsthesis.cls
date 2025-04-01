@@ -52,6 +52,9 @@ Only choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{amssymb}        % ams数学符号
 \RequirePackage{booktabs}       % 表格，横的粗线；\specialrule{1pt}{0pt}{0pt}
 \RequirePackage{ifthen}
+\usepackage{listings}     % 用于插入代码
+
+
 % % ===========================================
 % % 字体设置
 % % ===========================================
@@ -212,6 +215,26 @@ Only choose `xelatex', no `pdflatex' or `latex' and so on.}
   \@starttoc{toc}
   %\thispagestyle{empty}
   \linespread{1.0}\selectfont   % 恢复默认的行间距（可选）
+}
+
+% 定义代码目录
+\renewcommand{\lstlistingname}{代码}
+\renewcommand{\lstlistlistingname}{代码目录} % 修改代码目录的标题
+\newcommand{\listofcodes}{\lstlistoflistings} % 定义一个命令生成代码目录
+
+
+
+% 正文内部设置代码样式
+\lstset{
+    basicstyle=\ttfamily\small, % 设置代码字体为等宽小号
+    numbers=left,              % 显示行号
+    numberstyle=\tiny,         % 行号字体
+    language=Python, % 设置语言       
+    frame=single,              % 给代码加框
+    captionpos=b,              % 标题位置（b表示在代码下方）
+    breaklines=true,           % 自动换行
+    tabsize=4,                 % Tab 键宽度
+    columns=flexible,
 }
 
 % 正文内部图表标题设置
